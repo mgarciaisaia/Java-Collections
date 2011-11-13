@@ -2,8 +2,11 @@ package ar.com.unwebmaster.collections.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
+import ar.com.unwebmaster.collections.CollectionDecorator;
 import ar.com.unwebmaster.collections.closures.Block;
 import ar.com.unwebmaster.collections.closures.Predicate;
 
@@ -49,6 +52,16 @@ public class CollectionUtilsTest extends TestCase {
 		for (Integer result : results) {
 			index++;
 			assertTrue("Falta el numero " + index * 2, result.equals(index * 2));
+		}
+	}
+
+	public void testCollectionDecorator() {
+		Collection<Integer> collection = CollectionDecorator.instance(HashSet.class);
+		collection.addAll(Arrays.asList(1, 2, 3, 4, 5));
+		Integer index = 0;
+		for (Integer element : collection) {
+			index++;
+			assertTrue("Falta el numero " + index, element.equals(index));
 		}
 	}
 }
